@@ -1,1 +1,3 @@
-# course305-2024
+# 2024 Numerical Analysis (DCCS305)
+
+Prof. Shinhoo Kang
