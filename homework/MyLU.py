@@ -2,7 +2,7 @@ import numpy as np
 import scipy as sc
 
 
-def LU_factor(A,tol=1e-8):
+def LUfactor(A,tol=1e-8):
     """ LU factorization of an n by n matrix A
         A is factored to A = L * U
 
@@ -38,7 +38,7 @@ print('Permutation Matrix =\n',P)
 print('Lower Triangular Matrix =\n',L)
 print('Upper Triangular Matrix =\n',U)
 
-_L, _U = LU_factor(A)
+_L, _U = LUfactor(A)
 
 if np.linalg.norm(L - _L) < 1e-12:
     print('PASS Lower Triangular matrix' )
