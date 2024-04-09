@@ -21,7 +21,22 @@ def LUfactor(A,tol=1e-8):
     A = np.array(A)
 
     # - - - - - - - - - IMPLEMENTATION - - - - - - - 
-    
+    U = np.copy(A)
+    L = np.diag(np.ones(n))
+        
+    for k in range(n):
+        # check small pivot element
+        if (np.abs(U[k,k]) < tol):
+            print('Error: {0:d}th diagonal term is too small!'.format(k))
+
+        # factor 
+        L[k+1:,k]=U[k+1:,k]/U[k,k]
+
+        # Gauss elimination
+        # U[k,:] is the pivot equation
+        for j in range(k+1,n):
+            U[j,:] = U[j,:] - L[j,k] * U[k,:]
+
 
     # - - - - - - - - - IMPLEMENTATION - - - - - - -             
 
