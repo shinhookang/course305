@@ -46,20 +46,6 @@ sudo apt install python3-venv
 python3 -m pip install --upgrade pip
 ```
 
-## Install Open JDK 11
-```bash 
-sudo apt install openjdk-11-jdk
-```
-
-Check the `java` version 
-```bash 
-java --version
-```
-
-Find `JAVA_HOME location`
-```bash 
-dirname $(dirname $(readlink -f $(which java)))
-```
 
 # Mac system
 
@@ -67,16 +53,7 @@ dirname $(dirname $(readlink -f $(which java)))
 ```bash 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-
-## Install Open JDK 11
-```bash 
-brew install openjdk@11
-```
-Check the `java` version 
-```bash 
-java --version
-```
-
+ 
 # Create a virtual environment
 Create a virtual environment. `python -m venv .venv`
 
