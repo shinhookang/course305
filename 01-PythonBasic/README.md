@@ -1,6 +1,14 @@
 # Python Basic
 
-We use `Python 3.11.0`.
+## Python Fundamentals
+
+* Assignment
+* Numpy library
+* Mathematical operations
+* Built-in functions
+* Matplotlib library
+
+## Python Programming
 
 * Hello world
 * Comments
@@ -11,15 +19,6 @@ We use `Python 3.11.0`.
 * Python If-Else
 * Python Loop
 * Python Functions
-
-* Libraries
-- Numpy
-- Matplotlib
-
-* Assignment
-* Mathematical operations
-* Built-in functions
-* Graphics
 * Script files
 * Input/Output
 * Structured programming
