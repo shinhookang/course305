@@ -119,4 +119,19 @@ $> pyenv prefix
 /opt/homebrew
 ```
 
+# Install Python libraries
+
+Update `pip` using `pip install --upgrade pip`
+
+Install `numpy` using `pip install numpy`
+
+Install `matplotlib` using `pip install matplotlib`
+
+Install `scipy` using `pip install scipy`
+
+Install `ipykernel` using `pip install ipykernel`
+
+(You can uninstall Python library using `pip uninstall numpy`)
+
+
 <!-- ## Reference [PyEnv](https://github.com/pyenv/pyenv) -->
