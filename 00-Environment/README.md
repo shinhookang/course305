@@ -9,7 +9,7 @@ Run Termnial in administrator mode.
 (Windows + S, search Terminal, Right-click to run in administrator mode.)
 Type the following commands:
 ```
-$ wsl —install 
+$ wsl --install -d Ubuntu
 $ wsl --set-default-version 2
 ```
 
