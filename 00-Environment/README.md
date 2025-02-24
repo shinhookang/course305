@@ -14,7 +14,7 @@ $ wsl --set-default-version 2
 ```
 
 3. Install Ubuntu Linux from Microsoft Store
-ID: kus2024, PASSWD: kus2024
+ID: kus2025, PASSWD: kus2025
 
 4. Check the WSL version 
 ```
