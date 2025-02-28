@@ -36,6 +36,22 @@ sudo apt update
 sudo apt upgrade
 ```
 
+
+### How to Access your Linux files
+Run the following command in the shell within WSL:
+```
+explorer.exe .
+```
+Alternatively, you can directly access the files at `\\wsl.localhost\Ubuntu` in Explorer.
+
+Creating a symbolic link can be useful.
+You can do so with the following command:
+```
+ln -s /mnt/c/Users/brock/Downloads/ ~/downloads
+```
+Here, 'brock' represents my user ID-be sure to replace it with your own. 
+
+
 ## Install Python 3.11
 
 1. Install `Pyenv` and Set up your shell environment for `Pyenv`
