@@ -135,4 +135,14 @@ pip install numpy scipy matplotlib ipykernel
 
 Check the installed Python packages by `pip list`
 
+
+## VSCode in WSL
+
+1. Install Visual Studio Code on Windows.
+2. Install Python extension (Press Ctrl+Shift+X, and search for `Python`  by Microsoft)
+3. Install WSL extension (Press Ctrl+Shift+X, and search for `WSL`  by Microsoft).
+4. Open your project in WSL using `code .`.
+5. If VSCode cannot to save files inside your WSL directory, grant the necessary permission with `sudo chown -R brock ~/course305`.
+Here, **brock** refers to your user ID, **~/course545** is your working directory-adjust them accordingly. 
+
 <!-- ## Reference [PyEnv](https://github.com/pyenv/pyenv) -->
