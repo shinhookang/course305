@@ -1,9 +1,9 @@
-# Course305 (2025 Spring)
+# Course305 (2026 Spring)
 ## Numerical Analysis
 
 * Instructor: Shinhoo Kang 
-* Class Time: Wed. (10:00-10:50) in-person 
-* Office Hours: Wed. (14:30-16:00)
+* Class Time: Tue. (11:00-11:50) in-person 
+* Office Hours: Tue. (13:00-14:00)
 
 <details open>
   <summary>  <b>Table of Contents</b> </summary>
