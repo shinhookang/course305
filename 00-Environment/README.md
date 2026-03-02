@@ -1,148 +1,270 @@
-# Development Environment
+# Python Development Environment
 
-We will utilize a virtual environment for Python 3.11.
+This guide covers how to set up a Python development environment on **Windows**, **Mac**, and **Linux**, and how to work with **virtual environments** to keep project dependencies isolated.
 
-For Window users, install WSL2. 
+---
 
-## Install WSL2 
+# 1. Install Python
 
-1. Install Windows Terminal from Microsoft Store.
+## Windows
 
-2. WSL2 
-Run Termnial in administrator mode.
-(Windows + S, search Terminal, Right-click to run in administrator mode.)
-Type the following commands:
+Python on Windows is best used through **WSL2 (Windows Subsystem for Linux)**, which gives you a full Linux environment running natively on Windows.
+
+### Step 1 — Install Windows Terminal
+
+Install **Windows Terminal** from the Microsoft Store for a better terminal experience.
+
+### Step 2 — Install WSL2
+
+Open Terminal in **administrator mode** (Windows + S → search "Terminal" → Right-click → Run as administrator) and run:
+
 ```
-$ wsl —install 
-$ wsl --set-default-version 2
-```
-
-3. Install Ubuntu Linux from Microsoft Store
-ID: kus2025, PASSWD: kus2025
-
-4. Check the WSL version 
-```
-$ wsl -l -v 
-```
-If version is 1, then try 
-```
-$ wsl --set-version Ubuntu 2
-$ wsl -l -v 
+wsl --install
+wsl --set-default-version 2
 ```
 
-5. Update Ubuntu distribution
+### Step 3 — Install Ubuntu
+
+Install **Ubuntu** from the Microsoft Store. When prompted, set up a username and password.
+
+> Example: ID: `kus2024`, Password: `kus2024`
+
+### Step 4 — Verify WSL version
+
+```bash
+wsl -l -v
 ```
+
+If the version shown is `1`, upgrade it:
+
+```bash
+wsl --set-version Ubuntu 2
+wsl -l -v
+```
+
+### Step 5 — Install Python inside WSL2
+
+Update the Ubuntu package list and install Python tools:
+
+```bash
 sudo apt update
 sudo apt upgrade
-sudo apt install build-essential libssl-dev zlib1g-dev \
-libbz2-dev libreadline-dev libsqlite3-dev curl git \
-libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+sudo apt upgrade python3
+sudo apt install python3-pip
+sudo apt install python3-venv
+python3 -m pip install --upgrade pip
 ```
 
+Verify the installation:
 
-### How to Access your Linux files
-Run the following command in the shell within WSL:
+```bash
+python3 --version
 ```
-explorer.exe .
+
+---
+
+## Mac
+
+### Step 1 — Install Homebrew
+
+[Homebrew](https://brew.sh) is the standard package manager for macOS.
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-Alternatively, you can directly access the files at `\\wsl.localhost\Ubuntu` in Explorer.
 
-Creating a symbolic link can be useful.
-You can do so with the following command:
+### Step 2 — Install Python
+
+```bash
+brew install python
 ```
-ln -s /mnt/c/Users/brock/Downloads/ ~/downloads
+
+Verify the installation:
+
+```bash
+python3 --version
 ```
-Here, 'brock' represents my user ID-be sure to replace it with your own. 
 
+### (Optional) Managing multiple Python versions with pyenv
 
-## Install Python 3.11
+If you need to switch between Python versions, use **pyenv**.
 
-1. Install `Pyenv` and Set up your shell environment for `Pyenv`
-
-For mac users, 
 ```bash
 brew update
 brew install pyenv
+```
+
+Set up your shell (for zsh):
+
+```bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
 echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
 echo 'eval "$(pyenv init - zsh)"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-For Windows WSL users,
+List available Python versions and install one:
+
 ```bash
-curl https://pyenv.run | bash
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-source ~/.bashrc
+pyenv install --list
+pyenv install 3.11.0
 ```
 
-Check **shims** in PATH variable.
+Set the Python version for a specific project directory:
+
 ```bash
-$> echo $PATH
-/Users/Shinhoo/.pyenv/shims:/
+pyenv local 3.11.0    # applies only to the current directory
 ```
 
-Check available Python version by `pyenv install --list`
+Or set a global default:
 
-
-
-2. Install python 3.11.0 by `pyenv install 3.11.0`
-
-(Uninstall python 3.11.0 by `pyenv uninstall 3.11.0`)
-
-
-3. Use installed Python 3.11.0
-
-Check list of python versions `pyenv versions`
-
-Set python 3.11 locally by `pyenv local 3.11.0`
-
-(Undo `pyenv local --unset`)
-
-Check the prefix of `pyenv`
 ```bash
-$> pyenv prefix
-/Users/Shinhoo/.pyenv/versions/3.11.0
+pyenv global 3.11.0   # applies system-wide
 ```
 
-You can set python 3.11 globally by `pyenv global 3.11.0`
+---
 
-(Undo `pyenv global system`)
+## Linux
 
- 
+On most Linux distributions, Python 3 is already installed. To install or upgrade it manually:
+
+### Debian / Ubuntu
+
+```bash
+sudo apt update
+sudo apt install python3 python3-pip python3-venv
+python3 -m pip install --upgrade pip
+```
+
+### Fedora / RHEL / CentOS
+
+```bash
+sudo dnf install python3 python3-pip
+```
+
+### Arch Linux
+
+```bash
+sudo pacman -S python python-pip
+```
+
+Verify the installation:
+
+```bash
+python3 --version
+pip3 --version
+```
+
+---
+
+# 2. Virtual Environments
+
+A **virtual environment** is an isolated Python environment for a project. It keeps each project's packages separate from the system Python and from other projects.
+
+```
+project/
+├── .venv/          ← virtual environment (not committed to git)
+├── main.py
+└── requirements.txt
+```
+
 ## Create a virtual environment
-Create a virtual environment. `python -m venv .venv`
 
-Activate the virtual environment. `source .venv/bin/activate`
-
-Deactivate the virtual environment. `deactivate`
-
-
-## Install Python Libraries
-
-* numpy
-* scipy
-* matplotlib
-* ipykernel
+Inside your project directory, run:
 
 ```bash
-pip install --upgrade pip
-pip install numpy scipy matplotlib ipykernel
+python3 -m venv .venv
 ```
-(You can uninstall Python library using `pip uninstall numpy`)
 
-Check the installed Python packages by `pip list`
+This creates a `.venv` folder containing a private copy of Python and pip.
 
+## Activate the virtual environment
 
-## VSCode in WSL
+| Platform | Command |
+|---|---|
+| Mac / Linux | `source .venv/bin/activate` |
+| Windows (WSL2) | `source .venv/bin/activate` |
+| Windows (CMD) | `.venv\Scripts\activate.bat` |
+| Windows (PowerShell) | `.venv\Scripts\Activate.ps1` |
 
-1. Install Visual Studio Code on Windows.
-2. Install Python extension (Press Ctrl+Shift+X, and search for `Python`  by Microsoft)
-3. Install WSL extension (Press Ctrl+Shift+X, and search for `WSL`  by Microsoft).
-4. Open your project in WSL using `code .`.
-5. If VSCode cannot to save files inside your WSL directory, grant the necessary permission with `sudo chown -R brock ~/course305`.
-Here, **brock** refers to your user ID, **~/course305** is your working directory-adjust them accordingly. 
+After activation, your prompt changes to show `(.venv)`, and `python` / `pip` now refer to the versions inside the virtual environment:
 
-<!-- ## Reference [PyEnv](https://github.com/pyenv/pyenv) -->
+```bash
+(.venv) $ python --version
+(.venv) $ pip list
+```
+
+## Install packages
+
+```bash
+pip install numpy scipy matplotlib jupyterlab seaborn 
+```
+
+## Save and restore dependencies
+
+Save the current environment's packages to a file:
+
+```bash
+pip freeze > requirements.txt
+```
+
+Restore them in a new environment:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Deactivate the virtual environment
+
+```bash
+deactivate
+```
+
+> **Best practice:** Always activate your virtual environment before working on a project, and never install packages globally with `sudo pip`.
+
+---
+
+<!-- # 3. SSH Access to a Remote Server
+
+## Enable SSH on the server
+
+```bash
+sudo apt update
+sudo apt install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo ufw allow ssh
+```
+
+For older systems: `sudo service ssh restart`
+
+## Connect to the server
+
+```bash
+ssh <username>@<ip-address>
+```
+
+## Key-based (passwordless) login
+
+1. Generate an SSH key on your local machine:
+   ```bash
+   ssh-keygen -t ed25519
+   ```
+2. Copy the public key to the server:
+   ```bash
+   ssh-copy-id <username>@<ip-address>
+   ```
+
+## Change the default SSH port
+
+Edit `/etc/ssh/sshd_config` and change `Port 22` to a custom port number:
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+Restart SSH after saving:
+
+```bash
+sudo systemctl restart ssh
+``` -->
