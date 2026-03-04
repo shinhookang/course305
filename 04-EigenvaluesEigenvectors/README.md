@@ -1,3 +1,0 @@
-# Eigenvalues and Eigenvectors
-
-
