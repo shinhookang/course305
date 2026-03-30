@@ -1,3 +1,2 @@
-# Linear System of Equations
-## LU Factorization
+# LU Factorization
 
